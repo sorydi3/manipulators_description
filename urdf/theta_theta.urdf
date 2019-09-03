@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<robot name="theta_theta">
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.15"/>
+      </geometry>
+      <material name="grey"> 
+        <color rgba="0.3 0.3 0.4 0.7"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.1" radius="0.15"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="theta1_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.2" radius="0.1"/>
+      </geometry>
+      <material name="dark_blue"> 
+        <color rgba="0.2 0.2 0.7 0.7"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.2" radius="0.1"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="theta1" type="revolute">
+    <parent link="base_link"/>
+    <child link="theta1_link"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-3.1415" upper="3.1415" velocity="0.5"/>
+    <origin rpy="0 0 0" xyz="0 0 0.15"/>
+  </joint>
+
+  <link name="a1_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.4" radius="0.05"/>
+      </geometry>
+      <material name="light_blue"> 
+        <color rgba="0.4 0.5 0.8 0.7"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.4" radius="0.05"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="theta1_to_a1" type="fixed">
+    <parent link="theta1_link"/>
+    <child link="a1_link"/>
+    <origin rpy="0 1.57 0" xyz="0.2 0 0.0"/>
+  </joint>
+
+  <link name="theta2_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.2" radius="0.1"/>
+      </geometry>
+      <material name="dark_blue"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.2" radius="0.1"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="theta2" type="revolute">
+    <parent link="a1_link"/>
+    <child link="theta2_link"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-2.2" upper="2.2" velocity="0.5"/>
+    <origin rpy="0 -1.57 0" xyz="0 0 0.2"/>
+  </joint>
+
+  <link name="a2_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.4" radius="0.05"/>
+      </geometry>
+      <material name="light_blue"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.4" radius="0.05"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="theta2_to_a2" type="fixed">
+    <parent link="theta2_link"/>
+    <child link="a2_link"/>
+    <origin rpy="0 1.57 0" xyz="0.2 0 0.0"/>
+  </joint>
+
+  <link name="ef_link">
+    <visual>
+      <geometry>
+        <box size="0.1 0.1 0.1"/>
+      </geometry>
+      <material name="grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.1 0.1 0.1"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="a2_to_ef" type="fixed">
+    <parent link="a2_link"/>
+    <child link="ef_link"/>
+    <origin rpy="1.57 0 0" xyz="0 0 0.25"/>
+  </joint>
+
+</robot>
