@@ -2,7 +2,7 @@
   <param name="robot_description" command="$(find xacro)/xacro.py $(find theta_theta_description)/urdf/theta_theta.urdf"/>
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
     <rosparam param="source_list">["joint_states_cmd"]</rosparam>
-    <param name="use_gui" value="false"/>
+    <param name="use_gui" value="true"/>
   </node>
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find theta_theta_description)/cfg/theta_theta.rviz" required="true" />
