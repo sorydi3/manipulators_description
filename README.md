@@ -18,13 +18,18 @@ Once you have the package downloaded it is a good habit run the `catkin_make` co
 ~catkin_ws $ catkin_make
 ```
 
+or if you use the catkin build tools use
+
+```bash
+~catkin_ws $ catkin build
+```
+
 This package do not contain any piece of code just a URDF file and a launch. To execute it run the following command:
 
 ```bash
 $ roslaunch theta_theta_description view_theta_theta.launch
 ```
-
-You can enable or disable the GUI that allows you to move the articulations on the robot by changing the param `<param name="use_gui" value="false"/>` from `false` to `true` in the launch file.
+By default, the launch file runs the node `joint_state_publisher_gui` that allows you to move the manipulator manually. However, if you want to run your own controller (anything publishing `/joint_state` messages) firts comment this node.
 
 ## Kinematics 
 
