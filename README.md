@@ -1,10 +1,16 @@
 # Theta-Theta manipulator
 
-The theta-theta manipulator has 2 angular DoFs connected by two links as shown in the next figure.
+This package contains two very basic manipulators:
+* Theta-rho manipulator has 1 angular DoF and 1 prismatic DoF.
+  
+![](docs/theta_rho.png)
 
-![](./t1t2.png)
+* Theta-theta manipulator has 2 angular DoFs.
 
-## Simulate Theta-Theta manipulator
+![](docs/theta_theta.png)
+
+## Install
+
 To run the package you have to download it inside your `catkin_ws/src` folder. You can use:
 
 ```bash
@@ -24,27 +30,33 @@ or if you use the catkin build tools use
 ~catkin_ws $ catkin build
 ```
 
-This package do not contain any piece of code just a URDF file and a launch. To execute it run the following command:
+## Visualize the manipulators
+
+This package do not contain any piece of code just the URDF files and a launch. To execute it run the following command:
 
 ```bash
-$ roslaunch theta_theta_description view_theta_theta.launch
+$ roslaunch theta_theta_description view_manipulator.launch
 ```
-By default, the launch file runs the node `joint_state_publisher_gui` that allows you to move the manipulator manually. However, if you want to run your own controller (anything publishing `/joint_state` messages) firts comment this node.
+
+To select wich manipulator you want to visualize just comment/uncomment the appropiated lines in the launch file: `launch/view_manipulator.launch`.
+
+By default, the launch file runs the node `joint_state_publisher_gui` that allows you to move the manipulator manually. However, if you want to run your own controller (anything publishing `/joint_state` messages) firts comment this node also in the launch file.
 
 ## Kinematics 
 
-### Denavit-Hartenberg parameters 
+### Denavit-Hartenberg parameters
 
+* Theta-rho:
+  
+| DoF  | theta_i | d_i  | a_i​  | alpha_i​ |
+| ---- | ------- | ---- | ---- | ------- |
+| 1    | theta_1 | 0.5  | 0.0  | Pi/2    |
+| 2    | Pi/2​    | d_2  | 0.0  | 0.0     |
+
+* Theta-theta
+  
 | DoF  | theta_i | d_i  | a_i​  | alpha_i​ |
 | ---- | ------- | ---- | ---- | ------- |
 | 1    | theta_1 | 0    | 0.40 | 0       |
-| 2    | theta_2​ | 0    | 0.45 | Pi/4    |
-
-###  rTh matrix
-
-![](./docs/rTh.png)
-
-### Inverse kinematics
-
-![](./docs/ik.png)
+| 2    | theta_2​ | 0    | 0.45 | Pi/2    |
 

@@ -10,7 +10,7 @@
         <color rgba="0.3 0.3 0.4 0.7"/>
       </material>
     </visual>
-     </link>
+  </link>
 
   <link name="tmp11">
     <visual>
@@ -28,7 +28,7 @@
     <child link="tmp11"/>
     <axis xyz="0 0 1"/>
     <limit effort="1000.0" lower="-3.1415" upper="3.1415" velocity="0.5"/>
-    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <origin rpy="0 0 1.57" xyz="0 0 0"/>
   </joint>
 
   <link name="tmp12">
@@ -40,12 +40,17 @@
         <color rgba="0.0 0.0 0.0 0.0"/>
       </material>
     </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.0" radius="0.0"/>
+      </geometry>
+    </collision>
   </link>
 
   <joint name="d1" type="fixed">
     <parent link="tmp11"/>
     <child link="tmp12"/>
-    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <origin rpy="0 0 0" xyz="0 0 0.5"/>
   </joint>
 
   <link name="tmp13">
@@ -62,7 +67,7 @@
   <joint name="a1" type="fixed">
     <parent link="tmp12"/>
     <child link="tmp13"/>
-    <origin rpy="0 0 0" xyz="0.4 0 0"/>
+    <origin rpy="0 0 0" xyz="0.0 0 0"/>
   </joint>
 
  <link name="L1">
@@ -79,9 +84,8 @@
   <joint name="alpha1" type="fixed">
     <parent link="tmp13"/>
     <child link="L1"/>
-    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <origin rpy="1.57 0 0" xyz="0 0 0"/>
   </joint>
-
 
 
 
@@ -96,12 +100,10 @@
     </visual>
   </link>
 
-  <joint name="theta2" type="revolute">
+  <joint name="theta2" type="fixed">
     <parent link="L1"/>
     <child link="tmp21"/>
-	<axis xyz="0 0 1"/>
-    <limit effort="1000.0" lower="-3.1415" upper="3.1415" velocity="0.5"/>
-    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <origin rpy="0 0 1.57" xyz="0 0 0"/>
   </joint>
 
   <link name="tmp22">
@@ -115,10 +117,11 @@
     </visual>
   </link>
 
-  <joint name="d2" type="fixed">
+  <joint name="d2" type="prismatic">
     <parent link="tmp21"/>
     <child link="tmp22"/>
     <limit effort="1000.0" lower="0.2" upper="1.0" velocity="0.5"/>
+    <axis xyz="0 0 1"/>
     <origin rpy="0 0 0" xyz="0 0 0"/>
   </joint>
 
@@ -136,7 +139,7 @@
   <joint name="a2" type="fixed">
     <parent link="tmp22"/>
     <child link="tmp23"/>
-    <origin rpy="0 0 0" xyz="0.45 0 0"/>
+    <origin rpy="0 0 0" xyz="0.0 0 0"/>
   </joint>
 
  <link name="L2">
@@ -153,6 +156,6 @@
   <joint name="alpha2" type="fixed">
     <parent link="tmp23"/>
     <child link="L2"/>
-    <origin rpy="1.57 0 0" xyz="0 0 0"/>
+    <origin rpy="0.0 0 0" xyz="0 0 0"/>
   </joint>
 </robot>
