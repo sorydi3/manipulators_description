@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>theta_theta_description</name>
+  <name>manipulators_description</name>
   <version>0.0.0</version>
-  <description>The theta_theta_description package</description>
+  <description>Package containing seveeral manipulator URDF descriptions</description>
 
   <maintainer email="narcis.paloameras@udg.edu">narcis</maintainer>
 
