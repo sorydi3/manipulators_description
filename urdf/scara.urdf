@@ -1,0 +1,318 @@
+<?xml version="1.0"?>
+<robot name="SCARA">
+
+  < !-- BASE LINK -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.15"/>
+      </geometry>
+      <material name="grey"> 
+        <color rgba="0.3 0.3 0.4 0.7"/>
+      </material>
+    </visual>
+  </link>
+
+  < !-- FIRST JOINT -->
+  <link name="tmp11">
+    <visual>
+      <geometry>
+        <cylinder length="0.0" radius="0.0"/>
+      </geometry>
+      <material name="dark_blue"> 
+        <color rgba="0.0 0.0 0.5 0.5"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="theta1" type="revolute">
+    <parent link="base_link"/>
+    <child link="tmp11"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-3.1415" upper="3.1415" velocity="0.5"/>
+    <origin rpy="0 0 1.57" xyz="0 0 0"/>
+  </joint>
+
+  <link name="tmp12">
+    <visual>
+      <geometry>
+        <cylinder length="0.0" radius="0.0"/>
+      </geometry>
+      <material name="dark_blue"> 
+        <color rgba="0.0 0.0 0.0 0.0"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.0" radius="0.0"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="d1" type="fixed">
+    <parent link="tmp11"/>
+    <child link="tmp12"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+
+  <link name="tmp13">
+    <visual>
+      <geometry>
+        <cylinder length="0.0" radius="0.0"/>
+      </geometry>
+      <material name="dark_blue"> 
+        <color rgba="0.0 0.0 0.0 0.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="a1" type="fixed">
+    <parent link="tmp12"/>
+    <child link="tmp13"/>
+    <origin rpy="0 0 0" xyz="0.5 0 0"/>
+  </joint>
+
+ <link name="L1">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.1"/>
+      </geometry>
+      <material name="dark_blue"> 
+        <color rgba="0.0 0.0 0.0 0.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="alpha1" type="fixed">
+    <parent link="tmp13"/>
+    <child link="L1"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+
+< !-- JOINT 2 -->
+
+ <link name="tmp21">
+    <visual>
+      <geometry>
+        <cylinder length="0.0" radius="0.0"/>
+      </geometry>
+      <material name="dark_blue"> 
+        <color rgba="0.0 0.0 0.5 0.5"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="theta1" type="revolute">
+    <parent link="L1"/>
+    <child link="tmp21"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-3.1415" upper="3.1415" velocity="0.5"/>
+    <origin rpy="0 0 1.57" xyz="0 0 0"/>
+  </joint>
+
+  <link name="tmp22">
+    <visual>
+      <geometry>
+        <cylinder length="0.0" radius="0.0"/>
+      </geometry>
+      <material name="dark_blue"> 
+        <color rgba="0.0 0.0 0.0 0.0"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.0" radius="0.0"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="d1" type="fixed">
+    <parent link="tmp21"/>
+    <child link="tmp22"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+
+  <link name="tmp23">
+    <visual>
+      <geometry>
+        <cylinder length="0.0" radius="0.0"/>
+      </geometry>
+      <material name="dark_blue"> 
+        <color rgba="0.0 0.0 0.0 0.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="a1" type="fixed">
+    <parent link="tmp22"/>
+    <child link="tmp23"/>
+    <origin rpy="0 0 0" xyz="0.5 0 0"/>
+  </joint>
+
+ <link name="L2">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.1"/>
+      </geometry>
+      <material name="dark_blue"> 
+        <color rgba="0.0 0.0 0.0 0.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="alpha1" type="fixed">
+    <parent link="tmp23"/>
+    <child link="L2"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+
+< !--------------------------PRISMATIC JOINT 3----------------------------------------->
+
+  <link name="tmp31">
+    <visual>
+      <geometry>
+        <cylinder length="0.0" radius="0.0"/>
+      </geometry>
+      <material name="dark_blue"> 
+        <color rgba="0.0 0.0 0.5 0.5"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="theta2" type="fixed">
+    <parent link="L2"/>
+    <child link="tmp31"/>
+    <origin rpy="0 0 1.57" xyz="0 0 0"/>
+  </joint>
+
+  <link name="tmp32">
+    <visual>
+      <geometry>
+        <cylinder length="0.0" radius="0.0"/>
+      </geometry>
+      <material name="dark_blue"> 
+        <color rgba="0.0 0.0 0.0 0.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="d3" type="prismatic">
+    <parent link="tmp31"/>
+    <child link="tmp32"/>
+    <limit effort="1000.0" lower="0.2" upper="1.0" velocity="0.5"/>
+    <axis xyz="0 0 1"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+
+  <link name="tmp33">
+    <visual>
+      <geometry>
+        <cylinder length="0.0" radius="0.0"/>
+      </geometry>
+      <material name="dark_blue"> 
+        <color rgba="0.0 0.0 0.0 0.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="a2" type="fixed">
+    <parent link="tmp32"/>
+    <child link="tmp33"/>
+    <origin rpy="0 0 0" xyz="0.0 0 0"/>
+  </joint>
+
+ <link name="tmp34">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.1"/>
+      </geometry>
+      <material name="dark_blue"> 
+        <color rgba="0.0 0.0 0.0 0.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="alpha2" type="fixed">
+    <parent link="tmp33"/>
+    <child link="tmp34"/>
+    <origin rpy="0.0 0 0" xyz="0 0 0"/>
+  </joint>
+
+  < !-------------------------- REVOLUTE JOINT  ----------------------------------------->
+
+  <link name="tmp41">
+    <visual>
+      <geometry>
+        <cylinder length="0.0" radius="0.0"/>
+      </geometry>
+      <material name="dark_blue"> 
+        <color rgba="0.0 0.0 0.5 0.5"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="theta3" type="revolute">
+    <parent link="tmp34"/>
+    <child link="tmp41"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-3.1415" upper="3.1415" velocity="0.5"/>
+    <origin rpy="0 0 1.57" xyz="0 0 0"/>
+  </joint>
+
+  <link name="L4">
+    <visual>
+      <geometry>
+        <cylinder length="0.0" radius="0.0"/>
+      </geometry>
+      <material name="dark_blue"> 
+        <color rgba="0.0 0.0 0.0 0.0"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.0" radius="0.0"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="d4" type="fixed">
+    <parent link="tmp41"/>
+    <child link="L4"/>
+    <origin rpy="0 0 0" xyz="0 0 0.5"/>
+  </joint>
+
+  <link name="tmp42">
+    <visual>
+      <geometry>
+        <cylinder length="0.0" radius="0.0"/>
+      </geometry>
+      <material name="dark_blue"> 
+        <color rgba="0.0 0.0 0.0 0.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="a4" type="fixed">
+    <parent link="L4"/>
+    <child link="tmp42"/>
+    <origin rpy="0 0 0" xyz="0.5 0 0"/>
+  </joint>
+
+ <link name="tmp43">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.1"/>
+      </geometry>
+      <material name="dark_blue"> 
+        <color rgba="0.0 0.0 0.0 0.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="alpha1" type="fixed">
+    <parent link="tmp42"/>
+    <child link="tmp43"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+  
+</robot>
